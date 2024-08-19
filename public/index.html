@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K and J Tutoring - Book Your Session</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            background-color: #333;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: white;
+        }
+        .services, .tutors, .booking, .contact {
+            margin-bottom: 40px;
+        }
+        .tutor {
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>K and J Tutoring</h1>
+        <p>Your path to academic success starts here!</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#tutors">Our Tutors</a></li>
+            <li><a href="#booking">Book a Session</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="services" class="services">
+            <h2>Our Services</h2>
+            <p>We offer tutoring in various subjects, including Math, Science, English, and more. Whether you need help with homework, test preparation, or understanding complex concepts, we are here to help!</p>
+        </section>
+
+        <section id="tutors" class="tutors">
+            <h2>Meet Our Tutors</h2>
+            <div class="tutor">
+                <h3>John Doe</h3>
+                <p>Specializes in Math and Physics. Over 10 years of experience in tutoring students from middle school to college level.</p>
+            </div>
+            <div class="tutor">
+                <h3>Jane Smith</h3>
+                <p>Expert in English and Literature. Passionate about helping students improve their writing and comprehension skills.</p>
+            </div>
+        </section>
+
+        <section id="booking" class="booking">
+            <h2>Book a Session</h2>
+            <form id="bookingForm" action="/save-booking" method="post">
+                <label for="name">Full Name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+            
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+            
+                <label for="subject">Subject:</label><br>
+                <input type="text" id="subject" name="subject" required><br><br>
+            
+                <label for="date">Preferred Date:</label><br>
+                <input type="date" id="date" name="date" required><br><br>
+            
+                <label for="time">Preferred Time:</label><br>
+                <input type="time" id="time" name="time" required><br><br>
+            
+                <button type="submit">Book Now</button>
+            </form>
+            
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need more information, feel free to reach out to us at:</p>
+            <p>Email: info@kandjtutoring.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 K and J Tutoring. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function saveBooking() {
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            // Create a formatted text content
+            const text = `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nDate: ${date}\nTime: ${time}\n------------------------\n`;
+
+            // Create a blob of the text content
+            const blob = new Blob([text], { type: 'text/plain' });
+
+            // Create a link to download the file
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'booking.txt';
+
+            // Programmatically click the link to trigger the download
+            link.click();
+
+            // Cleanup
+            URL.revokeObjectURL(link.href);
+        }
+    </script>
+</body>
+</html>
